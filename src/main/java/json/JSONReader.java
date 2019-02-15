@@ -9,6 +9,18 @@ import java.net.MalformedURLException;
 import java.net.URL;
 import java.util.logging.Logger;
 
+/**
+ * @Author Blake Matis
+ * @version 1.0
+ * @since 1.0
+ *
+ * Utility for creating an HTTP connection specifically get requests.
+ *
+ * <p>
+ *     Currently only supports get requests no post requests yet. Can take
+ *     a String URL and convert it to URL or directly a pre-built URL.
+ * </p>
+ */
 public class JSONReader {
     private static final Logger logger = Logger.getLogger("JSONReader");
 
@@ -28,6 +40,8 @@ public class JSONReader {
             return Json.createReader(conn.getInputStream());
         } catch (IOException e) {
             logger.warning(e.getMessage());
+        } catch (Exception e){
+            e.printStackTrace();
         }
         return null;
     }
