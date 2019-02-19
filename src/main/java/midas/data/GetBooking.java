@@ -26,22 +26,22 @@ public class GetBooking extends AbstractJsonObj {
     private static final String HISTORY = "history";
     private static final String STATUS = "status";
 
-    private final String id;
-    private final String start;
-    private final String end;
-    private final String venue;
-    private final String client;
-    private final String type;
-    private final String attendees;
-    private final String notes;
-    private final ResourcesArray resources;
-    private final String invoice;
-    private final String status;
+    private String id;
+    private String start;
+    private String end;
+    private String venue;
+    private String client;
+    private String type;
+    private String attendees;
+    private String notes;
+    private ResourcesArray resources;
+    private String invoice;
+    private String status;
 
     public GetBooking(JsonObject jsonObject) {
         super(jsonObject);
-        this.id = getJsonObject().getJsonString(ID).getString();
-        this.start = getJsonObject().getJsonString(START).getString();
+        setId();
+        setStart();
         this.end = getJsonObject().getJsonString(END).getString();
         this.venue = getJsonObject().getJsonString(VENUE).getString();
         this.client = getJsonObject().getJsonString(CLIENT).getString();
@@ -51,6 +51,24 @@ public class GetBooking extends AbstractJsonObj {
         this.resources = new ResourcesArray(getJsonObject().getJsonArray(RESOURCES));
         this.invoice = getJsonObject().getJsonString(INVOICE).getString();
         this.status = getJsonObject().getJsonString(STATUS).getString();
+    }
+
+    private void setId(){
+        try{
+            this.id = getJsonObject().getJsonString(ID).getString();
+        }catch (Exception e){
+            e.printStackTrace();
+            this.id = "error";
+        }
+    }
+
+    private void setStart(){
+        try{
+            this.start = getJsonObject().getJsonString(START).getString();
+        }catch (Exception e){
+            e.printStackTrace();
+            this.start = "error";
+        }
     }
 
     public String getId() {

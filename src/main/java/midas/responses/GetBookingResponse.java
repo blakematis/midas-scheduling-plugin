@@ -18,7 +18,7 @@ public class GetBookingResponse extends AbstractMidasJsonResponse {
 
     public GetBookingResponse(JsonObject jsonObject) {
         super(jsonObject);
-        booking = new GetBooking(getJsonObject());
+        booking = new GetBooking(jsonObject);
     }
 
     public GetBooking getBooking() {
