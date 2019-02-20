@@ -36,7 +36,7 @@ public class GetBookingTest {
        getBookingResponse = new GetBookingResponse(bookingResponse);
        assertTrue("testing booking Response", getBookingResponse != null);
     }
-    
+
 
 
 }
