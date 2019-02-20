@@ -8,6 +8,7 @@ import org.junit.Test;
 import javax.json.JsonObject;
 import java.net.MalformedURLException;
 
+import static junit.framework.TestCase.assertEquals;
 import static junit.framework.TestCase.assertTrue;
 
 public class GetBookingTest {
@@ -26,7 +27,7 @@ public class GetBookingTest {
 
 
     @Test
-    public void midasResposne(){
+    public void midasResponse(){
         assertTrue("midas response is not null", bookingResponse != null);
     }
 
@@ -35,4 +36,7 @@ public class GetBookingTest {
        getBookingResponse = new GetBookingResponse(bookingResponse);
        assertTrue("testing booking Response", getBookingResponse != null);
     }
+    
+
+
 }

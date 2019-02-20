@@ -119,8 +119,7 @@ public class GetBooking extends AbstractJsonObj {
     private void setNotes(){
         try{
             this.notes = getJsonObject().getJsonString(NOTES).getString();
-        }catch (Exception e){
-            e.printStackTrace();
+        }catch (NullPointerException e){
             this.notes = "error";
         }
     }

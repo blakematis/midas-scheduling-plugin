@@ -20,12 +20,16 @@ public abstract class AbstractMidasJsonResponse extends AbstractJsonObj {
 
     private static final String ERROR = "error";
 
-    private final String error;
+    private String error;
     private final boolean errorOccured;
 
     public AbstractMidasJsonResponse(JsonObject jsonObject) {
         super(jsonObject);
-        this.error = jsonObject.getJsonString(ERROR).getString() + "";
+        try {
+            this.error = jsonObject.getJsonString(ERROR).getString() + "";
+        }catch (Exception e){
+            this.error = "";
+        }
         if(this.error.equals("")){
             this.errorOccured = false;
         }else{
