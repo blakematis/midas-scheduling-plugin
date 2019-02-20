@@ -20,6 +20,7 @@ public class GetBookingTest {
         GetBookingRequest bookingRequest = new GetBookingRequest(1);
         try {
             bookingResponse = MidasRequestClient.getMidasResponse(bookingRequest);
+            getBookingResponse = new GetBookingResponse(bookingResponse);
         }catch (Exception e){
             e.printStackTrace();
         }
@@ -33,9 +34,15 @@ public class GetBookingTest {
 
     @Test
     public void bookingResponse(){
-       getBookingResponse = new GetBookingResponse(bookingResponse);
        assertTrue("testing booking Response", getBookingResponse != null);
     }
+
+    @Test
+    public void getBookingId(){
+        assertTrue("Booking id test", getBookingResponse.getBooking().getId().equals("1"));
+    }
+
+    
 
 
 
