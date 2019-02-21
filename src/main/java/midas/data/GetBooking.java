@@ -1,8 +1,10 @@
 package midas.data;
 
 import json.AbstractJsonObj;
+import midas.util.TimeFormat;
 
 import javax.json.JsonObject;
+import java.util.GregorianCalendar;
 
 /**
  * @Author Blake Matis
@@ -193,5 +195,17 @@ public class GetBooking extends AbstractJsonObj {
 
     public String getStatus(){
         return status;
+    }
+
+    public GregorianCalendar getStartCalendar(){
+        return getCalender(start);
+    }
+
+    public GregorianCalendar getEndCalendar(){
+        return getCalender(end);
+    }
+
+    private GregorianCalendar getCalender(String timeStamp){
+        return TimeFormat.calendar(timeStamp);
     }
 }

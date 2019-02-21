@@ -1,5 +1,7 @@
 
 import midas.GetBookingTest;
+import midas.TimeFormatTest;
+import midas.util.TimeFormat;
 import org.junit.runner.JUnitCore;
 import org.junit.runner.Result;
 import org.junit.runner.notification.Failure;
@@ -7,7 +9,8 @@ import org.junit.runner.notification.Failure;
 public class TestRunner {
 
     public static void main(String[] args){
-        Result result = JUnitCore.runClasses(GetBookingTest.class);
+        Result result = JUnitCore.runClasses(GetBookingTest.class,
+                TimeFormatTest.class);
 
         int testsRan = result.getRunCount();
         int failedTests = result.getFailureCount();
