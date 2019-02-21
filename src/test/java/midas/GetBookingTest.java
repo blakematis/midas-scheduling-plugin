@@ -1,5 +1,6 @@
 package midas;
 
+import midas.data.GetBooking;
 import midas.requests.GetBookingRequest;
 import midas.responses.GetBookingResponse;
 import org.junit.Before;
@@ -20,9 +21,8 @@ public class GetBookingTest {
 
     @Before
     public void bookingRequest(){
-        GetBookingRequest bookingRequest = new GetBookingRequest(1);
         try {
-            bookingResponse = MidasRequestClient.getMidasResponse(bookingRequest);
+            bookingResponse = MidasRequestClient.getMidasResponse(GetBookingRequest.withId(1));
             getBookingResponse = new GetBookingResponse(bookingResponse);
             startTime = getBookingResponse.getBooking().getStartCalendar();
         }catch (Exception e){
