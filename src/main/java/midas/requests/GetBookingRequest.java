@@ -26,6 +26,10 @@ public class GetBookingRequest implements IRequest {
         this.id = id;
     }
 
+    public static GetBookingRequest withId(int id){
+        return new GetBookingRequest(id);
+    }
+
     public int getId() {
         return id;
     }
