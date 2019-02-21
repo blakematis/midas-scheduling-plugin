@@ -7,18 +7,24 @@ import org.junit.Test;
 
 import javax.json.JsonObject;
 import java.net.MalformedURLException;
+import java.util.Calendar;
+import java.util.GregorianCalendar;
 
+import static junit.framework.TestCase.assertEquals;
 import static junit.framework.TestCase.assertTrue;
 
 public class GetBookingTest {
-    JsonObject bookingResponse = null;
-    GetBookingResponse getBookingResponse = null;
+    private JsonObject bookingResponse = null;
+    private GetBookingResponse getBookingResponse = null;
+    private GregorianCalendar startTime = null;
 
     @Before
     public void bookingRequest(){
         GetBookingRequest bookingRequest = new GetBookingRequest(1);
         try {
             bookingResponse = MidasRequestClient.getMidasResponse(bookingRequest);
+            getBookingResponse = new GetBookingResponse(bookingResponse);
+            startTime = getBookingResponse.getBooking().getStartCalendar();
         }catch (Exception e){
             e.printStackTrace();
         }
@@ -26,13 +32,28 @@ public class GetBookingTest {
 
 
     @Test
-    public void midasResposne(){
+    public void midasResponse(){
         assertTrue("midas response is not null", bookingResponse != null);
     }
 
     @Test
     public void bookingResponse(){
-       getBookingResponse = new GetBookingResponse(bookingResponse);
        assertTrue("testing booking Response", getBookingResponse != null);
     }
+
+    @Test
+    public void getBookingId(){
+        assertTrue("Booking id test", getBookingResponse.getBooking().getId().equals("1"));
+    }
+
+    @Test
+    public void getStartTime(){
+        assertTrue("Start Time", startTime != null);
+    }
+
+    @Test
+    public void getStartMonth(){
+        assertTrue("Start Month", startTime.get(Calendar.MONTH) == 4);
+    }
+
 }

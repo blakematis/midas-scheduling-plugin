@@ -1,8 +1,10 @@
 package midas.data;
 
 import json.AbstractJsonObj;
+import midas.util.TimeFormat;
 
 import javax.json.JsonObject;
+import java.util.GregorianCalendar;
 
 /**
  * @Author Blake Matis
@@ -42,15 +44,15 @@ public class GetBooking extends AbstractJsonObj {
         super(jsonObject);
         setId();
         setStart();
-        this.end = getJsonObject().getJsonString(END).getString();
-        this.venue = getJsonObject().getJsonString(VENUE).getString();
-        this.client = getJsonObject().getJsonString(CLIENT).getString();
-        this.type = getJsonObject().getJsonString(TYPE).getString();
-        this.attendees = getJsonObject().getJsonString(ATTENDEES).getString();
-        this.notes = getJsonObject().getJsonString(NOTES).getString();
-        this.resources = new ResourcesArray(getJsonObject().getJsonArray(RESOURCES));
-        this.invoice = getJsonObject().getJsonString(INVOICE).getString();
-        this.status = getJsonObject().getJsonString(STATUS).getString();
+        setEnd();
+        setVenue();
+        setClient();
+        setType();
+        setAttendees();
+        setNotes();
+        setResources();
+        setInvoice();
+        setStatus();
     }
 
     private void setId(){
@@ -68,6 +70,86 @@ public class GetBooking extends AbstractJsonObj {
         }catch (Exception e){
             e.printStackTrace();
             this.start = "error";
+        }
+    }
+
+    private void setEnd(){
+        try{
+            this.end = getJsonObject().getJsonString(END).getString();
+        }catch (Exception e){
+            e.printStackTrace();
+            this.end = "error";
+        }
+    }
+
+    private void setVenue(){
+        try{
+            this.venue = getJsonObject().getJsonString(VENUE).getString();
+        }catch (Exception e){
+            e.printStackTrace();
+            this.venue = "error";
+        }
+    }
+
+    private void setClient(){
+        try{
+            this.client = getJsonObject().getJsonString(VENUE).getString();
+        }catch (Exception e){
+            e.printStackTrace();
+            this.client = "error";
+        }
+    }
+
+    private void setType(){
+        try{
+            this.type = getJsonObject().getJsonString(TYPE).getString();
+        } catch (Exception e){
+            e.printStackTrace();
+            this.type = "error";
+        }
+    }
+
+    private void setAttendees(){
+        try{
+            this.attendees = getJsonObject().getJsonString(ATTENDEES).getString();
+        }catch (Exception e){
+            e.printStackTrace();
+            this.attendees = "error";
+        }
+    }
+
+    private void setNotes(){
+        try{
+            this.notes = getJsonObject().getJsonString(NOTES).getString();
+        }catch (NullPointerException e){
+            this.notes = "error";
+        }
+    }
+
+    private void setResources(){
+        try{
+            this.resources = new ResourcesArray(getJsonObject().getJsonArray(RESOURCES));
+        }catch (Exception e){
+            e.printStackTrace();
+            this.resources = null;
+        }
+    }
+
+    private void setInvoice(){
+        try{
+            this.invoice = getJsonObject().getJsonString(INVOICE).getString();
+        }catch (Exception e){
+            e.printStackTrace();
+            this.invoice = "error";
+        }
+    }
+
+    private void setStatus(){
+        try{
+            this.status = getJsonObject().getJsonString(STATUS).getString();
+        }catch (Exception e){
+            e.printStackTrace();
+            this.status = "error";
         }
     }
 
@@ -113,5 +195,17 @@ public class GetBooking extends AbstractJsonObj {
 
     public String getStatus(){
         return status;
+    }
+
+    public GregorianCalendar getStartCalendar(){
+        return getCalender(start);
+    }
+
+    public GregorianCalendar getEndCalendar(){
+        return getCalender(end);
+    }
+
+    private GregorianCalendar getCalender(String timeStamp){
+        return TimeFormat.calendar(timeStamp);
     }
 }
