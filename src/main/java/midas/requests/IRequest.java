@@ -10,6 +10,12 @@ public interface IRequest {
 
     /**
      *
+     * @return The type of command to be sent.
+     */
+    public abstract String requestType();
+
+    /**
+     *
      * @return The command reference with all of its required and/or optional parameters.
      */
     public abstract String requestUrl();

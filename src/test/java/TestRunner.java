@@ -1,7 +1,6 @@
 
 import midas.GetBookingTest;
 import midas.TimeFormatTest;
-import midas.util.TimeFormat;
 import org.junit.runner.JUnitCore;
 import org.junit.runner.Result;
 import org.junit.runner.notification.Failure;

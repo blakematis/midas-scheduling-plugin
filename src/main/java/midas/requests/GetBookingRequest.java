@@ -38,6 +38,14 @@ public class GetBookingRequest implements IRequest {
         return action;
     }
 
+    /**
+     * @return The type of command to be sent.
+     */
+    @Override
+    public String requestType() {
+        return action;
+    }
+
     @Override
     public String requestUrl() {
         return "&action=" + action + "&id=" + id;

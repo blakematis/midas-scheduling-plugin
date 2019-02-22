@@ -1,39 +1,33 @@
 package midas;
 
-import midas.data.GetBooking;
 import midas.requests.GetBookingRequest;
 import midas.responses.GetBookingResponse;
 import org.junit.Before;
 import org.junit.Test;
 
-import javax.json.JsonObject;
-import java.net.MalformedURLException;
 import java.util.Calendar;
 import java.util.GregorianCalendar;
 
-import static junit.framework.TestCase.assertEquals;
 import static junit.framework.TestCase.assertTrue;
 
 public class GetBookingTest {
-    private JsonObject bookingResponse = null;
+
+    private static final String MIDAS_BASE_URL = "https://demo.mid.as/api.pl";
+    private static final String MIDAS_API_KEY = "?key=797769685251f9i80MWOhwOC";
+
     private GetBookingResponse getBookingResponse = null;
     private GregorianCalendar startTime = null;
+
 
     @Before
     public void bookingRequest(){
         try {
-            bookingResponse = MidasRequestClient.getMidasResponse(GetBookingRequest.withId(1));
-            getBookingResponse = new GetBookingResponse(bookingResponse);
+            GetBookingRequest bookingRequest = new GetBookingRequest(1);
+            getBookingResponse = (GetBookingResponse)MidasRequestClient.getMidasResponse(MIDAS_BASE_URL, MIDAS_API_KEY, bookingRequest);
             startTime = getBookingResponse.getBooking().getStartCalendar();
         }catch (Exception e){
             e.printStackTrace();
         }
-    }
-
-
-    @Test
-    public void midasResponse(){
-        assertTrue("midas response is not null", bookingResponse != null);
     }
 
     @Test

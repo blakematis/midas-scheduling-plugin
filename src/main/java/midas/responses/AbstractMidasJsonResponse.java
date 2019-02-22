@@ -20,8 +20,8 @@ public abstract class AbstractMidasJsonResponse extends AbstractJsonObj {
 
     private static final String ERROR = "error";
 
-    private String error;
-    private final boolean errorOccured;
+    private static String error;
+    private static boolean errorOccured;
 
     public AbstractMidasJsonResponse(JsonObject jsonObject) {
         super(jsonObject);
@@ -37,11 +37,11 @@ public abstract class AbstractMidasJsonResponse extends AbstractJsonObj {
         }
     }
 
-    public String getError(){
+    public static String getError(){
         return error;
     }
 
-    public boolean didErrorOccur(){
+    public static boolean didErrorOccur(){
         return errorOccured;
     }
 
