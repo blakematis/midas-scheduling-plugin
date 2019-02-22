@@ -10,6 +10,15 @@ import java.util.GregorianCalendar;
 
 import static junit.framework.TestCase.assertTrue;
 
+/**
+ * @Author: Blake Matis
+ * @version 1.0
+ * @since 1.0
+ * GetBooking Test class
+ * <p>
+ *     Tests the get_booking action on the MIDAS api.
+ * </p>
+ */
 public class GetBookingTest {
 
     private static final String MIDAS_BASE_URL = "https://demo.mid.as/api.pl";
