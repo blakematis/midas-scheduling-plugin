@@ -23,9 +23,14 @@ import java.net.MalformedURLException;
 public class MidasRequestClient {
 
 
-
-
-
+    /**
+     *
+     * @param baseUrl The url for the midas api
+     * @param apiKey The api key.
+     * @param request The type of action request to make.
+     * @return The corresponding MidasResponse based on the type of request.
+     * @throws MalformedURLException
+     */
     public static AbstractMidasJsonResponse getMidasResponse(String baseUrl, String apiKey, IRequest request) throws MalformedURLException{
         if(request.requestType().equals(Actions.GET_BOOKING)){
             return new GetBookingResponse(getJsonObject(baseUrl, apiKey, request));
