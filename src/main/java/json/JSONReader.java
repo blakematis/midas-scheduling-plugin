@@ -1,7 +1,5 @@
 package json;
 
-import midas.responses.GetBookingsResponse;
-
 import javax.json.Json;
 import javax.json.JsonArray;
 import javax.json.JsonObject;
@@ -56,5 +54,5 @@ public class JSONReader {
     public static JsonArray getJsonArrayReply(String API_URL) throws MalformedURLException{
         return JSONReader.getJsonReader(API_URL).read().asJsonArray();
     }
-    
+
 }
