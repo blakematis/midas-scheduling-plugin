@@ -56,8 +56,5 @@ public class JSONReader {
     public static JsonArray getJsonArrayReply(String API_URL) throws MalformedURLException{
         return JSONReader.getJsonReader(API_URL).read().asJsonArray();
     }
-
-    public static void main(String[] args) throws Exception{
-        GetBookingsResponse bookingsResponse = new GetBookingsResponse(getJsonArrayReply("https://demo.mid.as/api.pl?key=797769685251f9i80MWOhwOC&action=get_bookings&start=201902010000&end=201902220000"));
-    }
+    
 }
