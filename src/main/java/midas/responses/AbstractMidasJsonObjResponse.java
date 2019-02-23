@@ -16,14 +16,14 @@ import javax.json.JsonObject;
  *     specifically stores any api response errors due to the request.
  * </p>
  */
-public abstract class AbstractMidasJsonResponse extends AbstractJsonObj {
+public abstract class AbstractMidasJsonObjResponse extends AbstractJsonObj {
 
     private static final String ERROR = "error";
 
     private static String error;
     private static boolean errorOccured;
 
-    public AbstractMidasJsonResponse(JsonObject jsonObject) {
+    public AbstractMidasJsonObjResponse(JsonObject jsonObject) {
         super(jsonObject);
         try {
             this.error = jsonObject.getJsonString(ERROR).getString() + "";

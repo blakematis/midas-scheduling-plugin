@@ -3,10 +3,14 @@ package midas;
 import json.JSONReader;
 import midas.constants.Actions;
 import midas.requests.IRequest;
-import midas.responses.AbstractMidasJsonResponse;
+import midas.responses.AbstractMidasJsonArrayResponse;
+import midas.responses.AbstractMidasJsonObjResponse;
 import midas.responses.GetBookingResponse;
+import midas.responses.GetBookingsResponse;
 
+import javax.json.JsonArray;
 import javax.json.JsonObject;
+import javax.json.JsonValue;
 import java.net.MalformedURLException;
 
 /**
@@ -40,9 +44,17 @@ public class MidasRequestClient {
      * @return The corresponding MidasResponse based on the type of request.
      * @throws MalformedURLException
      */
-    public AbstractMidasJsonResponse getMidasResponse(IRequest request) throws MalformedURLException{
+    public AbstractMidasJsonObjResponse getMidasObjResponse(IRequest request) throws MalformedURLException{
         if(request.requestType().equals(Actions.GET_BOOKING)){
-            return new GetBookingResponse(getJsonObject(request));
+            return new GetBookingResponse(getJsonObj(request));
+        }else{
+            throw new MalformedURLException("Invalid Url or request not handled");
+        }
+    }
+
+    public AbstractMidasJsonArrayResponse getMidasArrayResponse(IRequest request) throws MalformedURLException{
+        if(request.requestType().equals(Actions.GET_BOOKINGS)){
+            return new GetBookingsResponse(getJsonArray(request));
         }else{
             throw new MalformedURLException("Invalid Url or request not handled");
         }
@@ -54,9 +66,14 @@ public class MidasRequestClient {
      * @return
      * @throws MalformedURLException
      */
-    private JsonObject getJsonObject(IRequest request) throws MalformedURLException{
-        String URL_REQUEST = MIDAS_URL + MIDAS_API_KEY + request.requestUrl();
-        return JSONReader.getJsonReply(URL_REQUEST);
+    public JsonObject getJsonObj(IRequest request) throws MalformedURLException{
+        String URL_REQUEST = this.MIDAS_URL + this.MIDAS_API_KEY + request.requestUrl();
+        return JSONReader.getJsonObjReply(URL_REQUEST);
+    }
+
+    public JsonArray getJsonArray(IRequest request) throws MalformedURLException{
+        String URL_REQUEST = this.MIDAS_URL + this.MIDAS_API_KEY + request.requestUrl();
+        return JSONReader.getJsonArrayReply(URL_REQUEST);
     }
 
 

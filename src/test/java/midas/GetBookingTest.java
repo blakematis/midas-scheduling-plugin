@@ -33,7 +33,7 @@ public class GetBookingTest {
         try {
             MidasRequestClient midasRequestClient = new MidasRequestClient(MIDAS_BASE_URL, MIDAS_API_KEY);
             GetBookingRequest bookingRequest = new GetBookingRequest(1);
-            getBookingResponse = (GetBookingResponse)midasRequestClient.getMidasResponse(bookingRequest);
+            getBookingResponse = (GetBookingResponse)midasRequestClient.getMidasObjResponse(bookingRequest);
             startTime = getBookingResponse.getBooking().getStartCalendar();
         }catch (Exception e){
             e.printStackTrace();

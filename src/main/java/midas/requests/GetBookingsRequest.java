@@ -10,12 +10,19 @@ import midas.constants.Actions;
  * @see <a href="https://mid.as/api/get_bookings">Midas get_bookings api reference</a>
  *
  */
-public class GetBookingRequests implements IRequest {
+public class GetBookingsRequest implements IRequest {
 
     public final String action = Actions.GET_BOOKINGS;
 
+
+    //Required Parameters
     private final String start;
     private final String end;
+
+    //Optional Parameters
+    private String venue = "";
+    private String type = "";
+    private String status = "";
 
     /**
      *
@@ -26,7 +33,7 @@ public class GetBookingRequests implements IRequest {
      *            <p>Sets the end of the window for which
      *            bookings should be returned.</p>
      */
-    public GetBookingRequests(String start, String end){
+    public GetBookingsRequest(String start, String end){
         this.start = start;
         this.end = end;
     }
@@ -44,6 +51,28 @@ public class GetBookingRequests implements IRequest {
      */
     @Override
     public String requestUrl() {
-        return "&action=" + action + "&start=" + start + "&end=" + end;
+        String requestUrl = "&action=" + this.action + "&start=" + this.start + "&end=" + this.end;
+        if(!this.venue.isEmpty()) {
+            requestUrl += "&venue=" + this.venue;
+        }
+        if (!this.type.isEmpty()) {
+            requestUrl += "&type=" + this.type;
+        }
+        if(!this.status.isEmpty()){
+            requestUrl += "&status=" + this.status;
+        }
+        return requestUrl;
+    }
+
+    public void setVenue(String venue){
+        this.venue = venue;
+    }
+
+    public void setType(String type){
+        this.type = type;
+    }
+
+    public void setStatus(String status){
+        this.status = status;
     }
 }

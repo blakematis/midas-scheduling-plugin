@@ -1,6 +1,9 @@
 package json;
 
+import midas.responses.GetBookingsResponse;
+
 import javax.json.Json;
+import javax.json.JsonArray;
 import javax.json.JsonObject;
 import javax.json.JsonReader;
 import java.io.IOException;
@@ -46,7 +49,15 @@ public class JSONReader {
         return null;
     }
 
-    public static JsonObject getJsonReply(String API_URL) throws MalformedURLException {
+    public static JsonObject getJsonObjReply(String API_URL) throws MalformedURLException {
         return JSONReader.getJsonReader(API_URL).read().asJsonObject();
+    }
+
+    public static JsonArray getJsonArrayReply(String API_URL) throws MalformedURLException{
+        return JSONReader.getJsonReader(API_URL).read().asJsonArray();
+    }
+
+    public static void main(String[] args) throws Exception{
+        GetBookingsResponse bookingsResponse = new GetBookingsResponse(getJsonArrayReply("https://demo.mid.as/api.pl?key=797769685251f9i80MWOhwOC&action=get_bookings&start=201902010000&end=201902220000"));
     }
 }

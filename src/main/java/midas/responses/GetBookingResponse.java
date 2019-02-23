@@ -12,7 +12,7 @@ import javax.json.JsonObject;
  * Maps the get_booking response from midas api into java objects.
  *
  */
-public class GetBookingResponse extends AbstractMidasJsonResponse {
+public class GetBookingResponse extends AbstractMidasJsonObjResponse {
 
     private final GetBooking booking;
 
