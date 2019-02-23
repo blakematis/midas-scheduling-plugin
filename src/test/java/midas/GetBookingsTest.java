@@ -48,4 +48,19 @@ public class GetBookingsTest {
         assertTrue("booking size is not zero", getBookingsResponse.getBookingsList().size() > 0);
     }
 
+    @Test
+    public void getBookingByID(){
+        assertTrue("booking by id", getBookingsResponse.findByID("3591") != null);
+    }
+
+    @Test
+    public void getBookingByStart(){
+        assertTrue("booking by start", getBookingsResponse.findByStart("5/2/2019 @ 12:30")!= null);
+    }
+
+    @Test
+    public void getBookingByVenueAndStart(){
+        assertTrue("booking by venue and start", getBookingsResponse.findByVenueAndStartTime("Room 1", "5/2/2019 @ 12:30") != null);
+    }
+
 }

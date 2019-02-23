@@ -6,6 +6,11 @@ import javax.json.JsonArray;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * @Author Blake Matis
+ * @version 1.0
+ * @since 1.0
+ */
 public class ResourcesArray extends AbstractJsonArray {
 
     private List<Resource> resources;
