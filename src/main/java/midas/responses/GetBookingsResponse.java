@@ -41,6 +41,16 @@ public class GetBookingsResponse extends AbstractMidasJsonArrayResponse {
         throw new NullPointerException("Could not find booking by venue or start time");
     }
 
+    public GetBooking findByVenueAndStartTimeAndStatus(String venue, String startTime, String status) {
+        for (GetBooking booking : this.bookings) {
+            if (booking.getVenue().equals(venue) && booking.getStart().equals(startTime)
+                    && booking.getStatus().equals(status)) {
+                return booking;
+            }
+        }
+        throw new NullPointerException("Could not find booking by venue,start time, and status");
+    }
+
     public GetBooking findByStart(String startTime){
         for(GetBooking booking: this.bookings){
             if(booking.getStart().equals(startTime)){
