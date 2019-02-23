@@ -30,6 +30,14 @@ status | Denotes whether the booking is a "request", a "confirmed" booking, or w
 
 ### Example use
 
-<code>
-GetBookingResponse bookingResponse = MidasRequestClient.getMidasResponse(GetBookingRequest.withId(1));
-</code>
+```  
+String MIDAS_BASE_URL = "https://demo.mid.as/api.pl";
+
+String MIDAS_API_KEY = "?key=797769685251f9i80MWOhwOC"; 
+  
+MidasRequestClient midasRequestClient = new MidasRequestClient(MIDAS_BASE_URL, MIDAS_API_KEY);
+
+GetBookingRequest bookingRequest = new GetBookingRequest(1);
+
+GetBookingResponse bookingResponse = (GetBookingResponse)midasRequestClient.getMidasObjResponse(bookingRequest);
+```
