@@ -94,6 +94,27 @@ public class GetBookingsResponse extends AbstractMidasJsonArrayResponse {
         throw new NullPointerException("Booking not found with that start time");
     }
 
+    /**
+     * Finds all of the bookings in a given range for a specific venue.
+     * @param venue Venue
+     * @param startTime Start date/time of booking.
+     * @param endTime End date/time of booking.
+     * @return List<GetBooking> the bookings that were found.
+     */
+    public List<GetBooking> findBookingsByVenueAndStartTimeAndStopTime(String venue, String startTime, String endTime){
+        List<GetBooking> bookings = new ArrayList<>();
+        for(GetBooking booking: this.bookings){
+            if(booking.getVenue().equals(venue)){
+                if(Long.parseLong(booking.getStart()) >=  Long.parseLong(startTime)
+                        && Long.parseLong(booking.getEnd()) <= Long.parseLong(endTime)
+                        && booking.getVenue().toLowerCase().equals(venue.toLowerCase())){
+                    bookings.add(booking);
+                }
+            }
+        }
+        return bookings;
+    }
+
     public List<GetBooking> getBookingsList(){
         return this.bookings;
     }
