@@ -1,5 +1,5 @@
 group 'EnerDapt'
-version '1.1'
+version '1.2'
 
 apply plugin: 'java'
 apply plugin: 'maven-publish'
@@ -43,7 +43,7 @@ task sourceJar(group: 'build', type: Jar, dependsOn: classes){
 publishing {
     publications {
         mavenJava(MavenPublication) {
-            artifactId 'java-json-formatter'
+            artifactId 'midas-scheduling-plugin'
             from components.java
 
             artifact sourceJar {
