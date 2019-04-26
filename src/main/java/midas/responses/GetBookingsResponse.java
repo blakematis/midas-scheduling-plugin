@@ -55,7 +55,7 @@ public class GetBookingsResponse extends AbstractMidasJsonArrayResponse {
      */
     public GetBooking findByVenueAndStartTime(String venue, String startTime) {
         for (GetBooking booking : this.bookings) {
-            if (booking.getVenue().equals(venue) && booking.getStart().equals(startTime)) {
+            if (booking.getVenue().toLowerCase().equals(venue.toLowerCase()) && booking.getStart().equals(startTime)) {
                 return booking;
             }
         }
@@ -72,7 +72,7 @@ public class GetBookingsResponse extends AbstractMidasJsonArrayResponse {
      */
     public GetBooking findByVenueAndStartTimeAndStatus(String venue, String startTime, String status) {
         for (GetBooking booking : this.bookings) {
-            if (booking.getVenue().equals(venue) && booking.getStart().equals(startTime)
+            if (booking.getVenue().toLowerCase().equals(venue.toLowerCase()) && booking.getStart().equals(startTime)
                     && booking.getStatus().equals(status)) {
                 return booking;
             }
