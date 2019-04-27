@@ -73,6 +73,14 @@ public class GetBooking extends AbstractJsonObj {
         }
     }
 
+    public String getStartFormatted(){
+        return TimeFormat.toTimeStamp(getStart());
+    }
+
+    public String getEndFormatted(){
+        return TimeFormat.toTimeStamp(getEnd());
+    }
+
     private void setEnd(){
         try{
             this.end = getJsonObject().getJsonString(END).getString();

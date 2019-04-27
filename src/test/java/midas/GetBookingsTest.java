@@ -1,11 +1,18 @@
 package midas;
 
+import midas.data.GetBooking;
 import midas.requests.GetBookingsRequest;
 import midas.responses.GetBookingsResponse;
 import org.junit.Before;
 import org.junit.Test;
 
 import java.net.MalformedURLException;
+import java.util.HashMap;
+import java.util.Iterator;
+import java.util.List;
+import java.util.Set;
+
+import static java.lang.String.valueOf;
 import static org.junit.Assert.assertTrue;
 
 /**
@@ -28,7 +35,7 @@ public class GetBookingsTest {
     public void getBooking(){
         MidasRequestClient midasRequestClient = new MidasRequestClient(MIDAS_BASE_URL, MIDAS_API_KEY);
         try {
-            getBookingsResponse = (GetBookingsResponse) midasRequestClient.getMidasArrayResponse(new GetBookingsRequest("201902010000", "201902220000"));
+            getBookingsResponse = (GetBookingsResponse) midasRequestClient.getMidasArrayResponse(new GetBookingsRequest("201901120000", "201905130000"));
         } catch (NullPointerException e){
             e.printStackTrace();
         } catch (MalformedURLException e) {
@@ -59,6 +66,21 @@ public class GetBookingsTest {
     @Test
     public void getBookingByVenueAndStart(){
         assertTrue("booking by venue and start", getBookingsResponse.findByVenueAndStartTime("Room 1", "5/2/2019 @ 12:30") != null);
+    }
+
+    @Test
+    public void getBookingMap(){
+        System.out.println(getBookingsResponse.getBookingsList().size());
+        HashMap<String, List<GetBooking>> map = getBookingsResponse.findBookingsVenueMapTime("201904200000", "201904280000");
+        System.out.println(map.size());
+        Iterator itr = map.keySet().iterator();
+        int size = 0;
+        while(itr.hasNext()){
+            String key = valueOf(itr.next());
+            size += map.get(key.toString()).size();
+        }
+        System.out.println(size);
+
     }
 
 }

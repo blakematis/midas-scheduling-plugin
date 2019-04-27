@@ -4,6 +4,7 @@ import midas.data.GetBooking;
 
 import javax.json.JsonArray;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 
 /**
@@ -105,14 +106,38 @@ public class GetBookingsResponse extends AbstractMidasJsonArrayResponse {
         List<GetBooking> bookings = new ArrayList<>();
         for(GetBooking booking: this.bookings){
             if(booking.getVenue().equals(venue)){
-                if(Long.parseLong(booking.getStart()) >=  Long.parseLong(startTime)
-                        && Long.parseLong(booking.getEnd()) <= Long.parseLong(endTime)
+                if(Long.parseLong(booking.getStartFormatted()) >=  Long.parseLong(startTime)
+                        && Long.parseLong(booking.getEndFormatted()) <= Long.parseLong(endTime)
                         && booking.getVenue().toLowerCase().equals(venue.toLowerCase())){
                     bookings.add(booking);
                 }
             }
         }
         return bookings;
+    }
+
+    public HashMap<String, List<GetBooking>> findBookingsVenueMapTime(String startTime, String endTime){
+        HashMap<String, List<GetBooking>> map = new HashMap<>();
+        for(GetBooking booking: this.bookings) {
+            try {
+                if(Long.parseLong(booking.getStartFormatted()) >= Long.parseLong(startTime)
+                        && Long.parseLong(booking.getEndFormatted()) <= Long.parseLong(endTime)) {
+                    if (map.containsKey(booking.getVenue().toLowerCase())) {
+                        List<GetBooking> bookingsForVenue = map.get(booking.getVenue().toLowerCase());
+                        bookingsForVenue.add(booking);
+                        map.replace(booking.getVenue().toLowerCase(), bookingsForVenue);
+                    } else {
+                        List<GetBooking> bookingsForVenue = new ArrayList<>();
+                        bookingsForVenue.add(booking);
+                        map.put(booking.getVenue().toLowerCase(), bookingsForVenue);
+                    }
+                }
+            } catch (NullPointerException e){
+                e.printStackTrace();
+            }
+        }
+        return map;
+
     }
 
     public List<GetBooking> getBookingsList(){
