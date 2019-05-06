@@ -116,6 +116,12 @@ public class GetBookingsResponse extends AbstractMidasJsonArrayResponse {
         return bookings;
     }
 
+    /**
+     * Finds all of the bookings in a given range and adds them to a hashmap by venue name.
+     * @param startTime Start date/time of booking.
+     * @param endTime End date/time of booking.
+     * @return HastMap<Venue names, List<GetBooking>
+     */
     public HashMap<String, List<GetBooking>> findBookingsVenueMapTime(String startTime, String endTime){
         HashMap<String, List<GetBooking>> map = new HashMap<>();
         for(GetBooking booking: this.bookings) {
