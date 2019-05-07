@@ -49,13 +49,14 @@ public class TimeFormat {
         if(month.length() == 1){
             month = "0" + month;
         }
-
-
         year = date[2];
 
 
-
-        hour = time[0];
+        if(timeStamp.contains("AM")) {
+            hour = time[0];
+        }else{
+            hour = time[0] + 12;
+        }
         minute = time[1];
 
         return year + month + day + hour + minute;
