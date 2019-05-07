@@ -52,11 +52,11 @@ public class TimeFormat {
         year = date[2];
 
 
-        if(timeStamp.contains("AM")) {
-            hour = time[0];
-        }else{
-            hour = time[0] + 12;
+        hour = time[0];
+        if(timeStamp.contains("PM")) {
+            hour += 12;
         }
+
         minute = time[1];
 
         return year + month + day + hour + minute;

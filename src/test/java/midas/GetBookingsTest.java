@@ -78,6 +78,7 @@ public class GetBookingsTest {
         while(itr.hasNext()){
             String key = valueOf(itr.next());
             size += map.get(key.toString()).size();
+            System.out.println(map.get(key.toString()).get(0).getEndFormatted());
         }
         System.out.println(size);
 
