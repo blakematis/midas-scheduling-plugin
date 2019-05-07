@@ -54,12 +54,12 @@ public class TimeFormat {
 
         hour = time[0];
         if(timeStamp.contains("PM")) {
-            hour += 12;
+            hour = String.valueOf(Integer.parseInt(hour) + 12);
         }
 
         minute = time[1];
         minute = minute.substring(0, 2);
-
+        System.out.println("year: " + year +" month: " + month + " day: " + day + " hour: " + hour +" minute: "+ minute);
         return year + month + day + hour + minute;
     }
 }
