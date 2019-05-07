@@ -58,6 +58,7 @@ public class TimeFormat {
         }
 
         minute = time[1];
+        minute = minute.substring(0, 2);
 
         return year + month + day + hour + minute;
     }
