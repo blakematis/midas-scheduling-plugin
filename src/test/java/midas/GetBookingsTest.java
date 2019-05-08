@@ -26,17 +26,17 @@ import static org.junit.Assert.assertTrue;
  */
 public class GetBookingsTest {
 
-    private static final String MIDAS_BASE_URL = "https://demo.mid.as/api.pl";
+    private static final String MIDAS_BASE_URL = "https://demo.mid.as//api.pl";
     private static final String MIDAS_API_KEY = "?key=797769685251f9i80MWOhwOC";
 
     private GetBookingsResponse getBookingsResponse = null;
 
     @Before
     public void getBooking(){
-        MidasRequestClient midasRequestClient = new MidasRequestClient(MIDAS_BASE_URL, MIDAS_API_KEY);
+        MidasRequestClient midasRequestClient = new MidasRequestClient("https://jessup.mid.as//api.pl", "?key=564950505150yHcr7OCcwml8");
         try {
-            //getBookingsResponse = (GetBookingsResponse) midasRequestClient.getMidasArrayResponse(new GetBookingsRequest("201905050000", "201905130000"));
-            getBookingsResponse = (GetBookingsResponse) midasRequestClient.getMidasArrayResponse(new GetBookingsRequest("201901120000", "201905130000"));
+            getBookingsResponse = (GetBookingsResponse) midasRequestClient.getMidasArrayResponse(new GetBookingsRequest("201905050000", "201905130000"));
+            //getBookingsResponse = (GetBookingsResponse) midasRequestClient.getMidasArrayResponse(new GetBookingsRequest("201901120000", "201905130000"));
         } catch (NullPointerException e){
             e.printStackTrace();
         } catch (MalformedURLException e) {
@@ -72,14 +72,21 @@ public class GetBookingsTest {
     @Test
     public void getBookingMap(){
         System.out.println(getBookingsResponse.getBookingsList().size());
-        HashMap<String, List<GetBooking>> map = getBookingsResponse.findBookingsVenueMapTime("201904200000", "201904280000");
+        //HashMap<String, List<GetBooking>> map = getBookingsResponse.findBookingsVenueMapTime("201904200000", "201904280000");
+        HashMap<String, List<GetBooking>> map = getBookingsResponse.findBookingsVenueMapTime("201905050000", "201905130000");
         System.out.println(map.size());
         Iterator itr = map.keySet().iterator();
         int size = 0;
         while(itr.hasNext()){
             String key = valueOf(itr.next());
             size += map.get(key.toString()).size();
-            System.out.println(map.get(key.toString()).get(0).getEndFormatted());
+            List<GetBooking> bookings =map.get(key.toString().toLowerCase());
+            Iterator bookingItr = bookings.iterator();
+            while (bookingItr.hasNext()){
+                GetBooking booking = (GetBooking) bookingItr.next();
+                System.out.println(booking.getVenue() + " start: " + booking.getStart() + " end: " + booking.getEnd());
+                System.out.println(booking.getVenue() + " start: " + booking.getStartFormatted() + " end: " + booking.getEndFormatted());
+            }
         }
         System.out.println(size);
 

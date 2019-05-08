@@ -40,12 +40,12 @@ public class TimeFormat {
         String[] date = dateTime[0].split("/");
         String[] time = dateTime[1].split(":");
 
-        day = date[0];
+        day = date[1];
 
         if(day.length() == 1){
             day = "0" + day;
         }
-        month = date[1];
+        month = date[0];
         if(month.length() == 1){
             month = "0" + month;
         }
@@ -53,13 +53,16 @@ public class TimeFormat {
 
 
         hour = time[0];
-        if(timeStamp.contains("PM")) {
+        if(timeStamp.contains("PM") && !hour.equals("12") ) {
             hour = String.valueOf(Integer.parseInt(hour) + 12);
+        }
+        if(hour.length() == 1){
+            hour = 0 + hour;
         }
 
         minute = time[1];
         minute = minute.substring(0, 2);
-        System.out.println("year: " + year +" month: " + month + " day: " + day + " hour: " + hour +" minute: "+ minute);
+        //System.out.println("year: " + year +" month: " + month + " day: " + day + " hour: " + hour +" minute: "+ minute);
         return year + month + day + hour + minute;
     }
 }

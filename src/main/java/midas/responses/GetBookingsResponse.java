@@ -28,8 +28,8 @@ public class GetBookingsResponse extends AbstractMidasJsonArrayResponse {
             try {
                 GetBooking booking = new GetBooking(jsonArray.getJsonObject(index));
                 bookings.add(booking);
-            }catch (NullPointerException e){
-
+            }catch (Exception e){
+                e.printStackTrace();
             }
         }
     }
