@@ -33,10 +33,10 @@ public class GetBookingsTest {
 
     @Before
     public void getBooking(){
-        MidasRequestClient midasRequestClient = new MidasRequestClient("https://jessup.mid.as//api.pl", "?key=564950505150yHcr7OCcwml8");
+        MidasRequestClient midasRequestClient = new MidasRequestClient(MIDAS_BASE_URL, MIDAS_API_KEY);
         try {
-            getBookingsResponse = (GetBookingsResponse) midasRequestClient.getMidasArrayResponse(new GetBookingsRequest("201905050000", "201905130000"));
-            //getBookingsResponse = (GetBookingsResponse) midasRequestClient.getMidasArrayResponse(new GetBookingsRequest("201901120000", "201905130000"));
+            //getBookingsResponse = (GetBookingsResponse) midasRequestClient.getMidasArrayResponse(new GetBookingsRequest("201905050000", "201905130000"));
+            getBookingsResponse = (GetBookingsResponse) midasRequestClient.getMidasArrayResponse(new GetBookingsRequest("201901120000", "201905130000"));
         } catch (NullPointerException e){
             e.printStackTrace();
         } catch (MalformedURLException e) {

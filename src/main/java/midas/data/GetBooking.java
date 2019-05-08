@@ -92,7 +92,7 @@ public class GetBooking extends AbstractJsonObj {
 
     private void setVenue(){
         try{
-            this.venue = getJsonObject().getJsonString(VENUE).getString();
+            this.venue = getJsonObject().getJsonString(VENUE).getString().toLowerCase();
         }catch (Exception e){
             e.printStackTrace();
             this.venue = "error";
